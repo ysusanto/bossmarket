@@ -13,6 +13,8 @@ namespace bossmarket.Entities
 
         public string Email { get; set; }
         public Role Role { get; set; }
+        [JsonIgnore]
+        public List<RefreshToken> RefreshTokens { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

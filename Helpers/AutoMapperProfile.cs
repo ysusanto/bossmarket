@@ -9,6 +9,7 @@ namespace bossmarket.Helpers
         public AutoMapperProfile()
         {
             CreateMap<CreateUser, Users>();
+
         }
     }
 }

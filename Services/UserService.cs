@@ -4,7 +4,8 @@ using System.Linq;
 using bossmarket.Entities;
 using bossmarket.Models.Users;
 using bossmarket.Helpers;
-
+using bossmarket.Authorization;
+using Microsoft.Extensions.Options;
 namespace bossmarket.Services
 {
     public interface IUserService
@@ -19,12 +20,16 @@ namespace bossmarket.Services
     {
         private DataContext _context;
         private readonly IMapper _mapper;
+        private readonly AppSettings _appSettings;
         private DateTime Today = DateTime.Now;
+        private IJwtUtils _jwtUtils;
 
-        public UserService(DataContext context, IMapper mapper)
+        public UserService(DataContext context, IMapper mapper, IJwtUtils jwtUtils, IOptions<AppSettings> appSettings)
         {
             _context = context;
             _mapper = mapper;
+            _jwtUtils = jwtUtils;
+            _appSettings = appSettings.Value;
         }
         public IEnumerable<Users> GetAll()
         {
