@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using bossmarket.Helpers;
 using bossmarket.Services;
+using bossmarket.Authorization;
 
 
 // Add services to the container.
@@ -23,9 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
         x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
     // configure DI for application services
     services.AddScoped<IUserService, UserService>();
+    services.AddScoped<IJwtUtils, JwtUtils>();
 }
 
 var app = builder.Build();
