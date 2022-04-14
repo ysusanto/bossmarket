@@ -6,6 +6,7 @@ using bossmarket.Authorization;
 
 namespace bossmarket.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase

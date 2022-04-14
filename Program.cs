@@ -42,7 +42,7 @@ var app = builder.Build();
 
     // global error handler
     app.UseMiddleware<ErrorHandlerMiddleware>();
-
+    app.UseMiddleware<JwtMiddleware>();
     app.MapControllers();
 }
 

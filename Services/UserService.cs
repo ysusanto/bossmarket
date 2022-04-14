@@ -84,6 +84,8 @@ namespace bossmarket.Services
             var jwtToken = _jwtUtils.GenerateJwtToken(user);
             var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
             refreshToken.ReasonRevoked = refreshToken.ReasonRevoked == null ? "" : refreshToken.ReasonRevoked;
+            refreshToken.ReplacedByToken = refreshToken.ReplacedByToken == null ? "" : refreshToken.ReasonRevoked;
+            refreshToken.RevokedByIp = refreshToken.RevokedByIp == null ? "" : refreshToken.ReasonRevoked;
             user.RefreshTokens.Add(refreshToken);
 
             // remove old refresh tokens from user

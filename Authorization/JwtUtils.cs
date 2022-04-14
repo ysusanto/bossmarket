@@ -37,7 +37,7 @@ public class JwtUtils : IJwtUtils
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddMinutes(15),
+            Expires = DateTime.UtcNow.AddDays(15),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -69,11 +69,12 @@ public class JwtUtils : IJwtUtils
             // return user id from JWT token if validation successful
             return userId;
         }
-        catch
+        catch (Exception e)
         {
             // return null if validation fails
             return null;
         }
+
     }
 
     public RefreshToken GenerateRefreshToken(string ipAddress)
