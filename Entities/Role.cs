@@ -2,7 +2,9 @@ namespace bossmarket.Entities;
 
 public enum Role
 {
+    Superadmin,
     Admin,
-    User,
-    Superadmin
+    Warehouse,
+    Customer,
+    Guest
 }

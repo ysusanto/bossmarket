@@ -15,6 +15,7 @@ namespace bossmarket.Entities
         public Role Role { get; set; }
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

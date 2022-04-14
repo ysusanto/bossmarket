@@ -21,5 +21,15 @@ namespace bossmarket.Helpers
         }
 
         public DbSet<Users> Users { get; set; }
+        // public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Brands> Brands { get; set; }
+        public DbSet<Categori> Categories { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Satuan> Satuans { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionDetail> TransactionDetails { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<StatusOrder> StatusOrders { get; set; }
+        public DbSet<StatusPayment> StatusPayments { get; set; }
     }
 }

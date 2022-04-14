@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bossmarket.Helpers;
 
@@ -10,9 +11,10 @@ using bossmarket.Helpers;
 namespace bossmarket.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220414035006_CreateSatuan")]
+    partial class CreateSatuan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,36 +135,6 @@ namespace bossmarket.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("bossmarket.Entities.Payment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CodePayment")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PathImage")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Payments");
-                });
-
             modelBuilder.Entity("bossmarket.Entities.Satuan", b =>
                 {
                     b.Property<int>("Id")
@@ -188,146 +160,6 @@ namespace bossmarket.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Satuans");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.StatusOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StatusOrders");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.StatusPayment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StatusPayments");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.Transaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CodeTransaction")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("Customers")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<decimal>("Disc")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<decimal>("GrandTotal")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<decimal>("PPN")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int?>("PaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StatusOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StatusPaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("SubTotal")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int?>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PaymentId");
-
-                    b.HasIndex("StatusOrderId");
-
-                    b.HasIndex("StatusPaymentId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.TransactionDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("LotCode")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("Qty")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TransactionId");
-
-                    b.ToTable("TransactionDetails");
                 });
 
             modelBuilder.Entity("bossmarket.Entities.Users", b =>
@@ -365,21 +197,6 @@ namespace bossmarket.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ItemTransactionDetail", b =>
-                {
-                    b.Property<int>("ItemsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionDetailsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemsId", "TransactionDetailsId");
-
-                    b.HasIndex("TransactionDetailsId");
-
-                    b.ToTable("ItemTransactionDetail");
-                });
-
             modelBuilder.Entity("bossmarket.Entities.Item", b =>
                 {
                     b.HasOne("bossmarket.Entities.Brands", null)
@@ -393,32 +210,6 @@ namespace bossmarket.Migrations
                     b.HasOne("bossmarket.Entities.Satuan", null)
                         .WithMany("Items")
                         .HasForeignKey("SatuanId");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.Transaction", b =>
-                {
-                    b.HasOne("bossmarket.Entities.Payment", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("PaymentId");
-
-                    b.HasOne("bossmarket.Entities.StatusOrder", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("StatusOrderId");
-
-                    b.HasOne("bossmarket.Entities.StatusPayment", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("StatusPaymentId");
-
-                    b.HasOne("bossmarket.Entities.Users", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("UsersId");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.TransactionDetail", b =>
-                {
-                    b.HasOne("bossmarket.Entities.Transaction", null)
-                        .WithMany("TransactionDetails")
-                        .HasForeignKey("TransactionId");
                 });
 
             modelBuilder.Entity("bossmarket.Entities.Users", b =>
@@ -474,21 +265,6 @@ namespace bossmarket.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("ItemTransactionDetail", b =>
-                {
-                    b.HasOne("bossmarket.Entities.Item", null)
-                        .WithMany()
-                        .HasForeignKey("ItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bossmarket.Entities.TransactionDetail", null)
-                        .WithMany()
-                        .HasForeignKey("TransactionDetailsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("bossmarket.Entities.Brands", b =>
                 {
                     b.Navigation("Items");
@@ -499,34 +275,9 @@ namespace bossmarket.Migrations
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("bossmarket.Entities.Payment", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
             modelBuilder.Entity("bossmarket.Entities.Satuan", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.StatusOrder", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.StatusPayment", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.Transaction", b =>
-                {
-                    b.Navigation("TransactionDetails");
-                });
-
-            modelBuilder.Entity("bossmarket.Entities.Users", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }
