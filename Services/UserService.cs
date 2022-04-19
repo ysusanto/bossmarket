@@ -52,7 +52,7 @@ namespace bossmarket.Services
         {
             var user = getUser(id);
             user.DeletedAt = Today;
-            _context.Users.Remove(user);
+            _context.Users.Update(user);
             _context.SaveChanges();
         }
         public void Create(CreateUser model)
